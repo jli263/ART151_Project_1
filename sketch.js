@@ -1,33 +1,29 @@
-
+let cnv;
 let ellipseX = 30;
 let ellipseY = 30;
 let ellipseXSpeed = 5;
 let ellipseYSpeed = 5;
 
+
 //Setup the canvas
 function setup() {
-    createCanvas(windowWidth,windowHeight);
-    background(0,0,0);
 
+    //Set canvas and clicker
+    cnv = createCanvas(windowWidth,windowHeight);
+    cnv.mouseClicked(changeColor);
+
+    background(0,0,0); //Set background
 }
-
 
 function draw() {
     //background(0,0,0);
 
     drawEllipse();
-    //Added a circle
-    //circle(500, 400, 60);
 }
 
 //Draw the ellipse 
 function drawEllipse() {
 
-    //Set the color
-    fill(Math.floor(Math.random() * 255),Math.floor(Math.random() * 255),Math.floor(Math.random() * 255));
-
-    //Set the stroke
-    stroke(Math.floor(Math.random() * 255),Math.floor(Math.random() * 255),Math.floor(Math.random() * 255));
     strokeWeight(3);
 
     ellipse(ellipseX, ellipseY, 50, 50);
@@ -41,6 +37,16 @@ function drawEllipse() {
         ellipseYSpeed*=-1;
     }
 
+    //Move the ellipse
     ellipseX = ellipseX + ellipseXSpeed;
     ellipseY = ellipseY + ellipseYSpeed;
+}
+
+//Change fill and stroke color
+function changeColor() {
+    //Set the color
+    fill(Math.floor(Math.random() * 255),Math.floor(Math.random() * 255),Math.floor(Math.random() * 255));
+
+    //Set the stroke
+    stroke(Math.floor(Math.random() * 255),Math.floor(Math.random() * 255),Math.floor(Math.random() * 255));
 }
