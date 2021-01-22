@@ -1,5 +1,3 @@
-let cnv;
-
 class myEllipse {
 
     constructor(x, y, w, h) {
@@ -7,10 +5,6 @@ class myEllipse {
         this.y = y;
         this.w = w;
         this.h = h;
-    }
-
-    setX(x) {
-        this.x = x;
     }
 
     show() {
@@ -28,6 +22,10 @@ let _ellipse = {
 
 let ellipseArray = [];
 
+let mappedMouseX, mappedMouseY = 0;
+
+let cnv;
+
 document.onkeydown = checkKey;
 
 //Setup the canvas
@@ -44,7 +42,10 @@ function setup() {
 }
 
 function draw() {
-    //background(0,0,0);
+
+    mappedMouseY = map(mouseY, 0, windowHeight, 0, 128);
+
+    console.log(mappedMouseY);
 
     drawEllipse();
 }
@@ -53,18 +54,21 @@ function draw() {
 function drawEllipse() {
 
     let e = new myEllipse(_ellipse.X,_ellipse.Y,50,50);
-    ellipseArray.push(e);
-
     e.show();
-    //ellipse(_ellipse.X, _ellipse.Y, 50, 50);        //Draw the ellipse
+    
+    /*  NOT USED
+    ellipseArray.push(e);
 
     console.log(ellipseArray.length);
 
-   /* if (ellipseArray.length > 100) {
-        ellipseArray.
-        ellipseArray.splice(0,1);
-    } */
+    for (let i = 0; i < ellipseArray.length; i++) {
+        ellipseArray[i].show();
+    }
 
+    if (ellipseArray.length > 2000) {
+        ellipseArray.splice(0,2);
+    } */
+ 
     //Bounce between the max and min width
     if (_ellipse.X > windowWidth-30 || _ellipse.X < 30) {
         _ellipse.XSpeed*=-1;
@@ -81,10 +85,10 @@ function drawEllipse() {
 
 function changeColor() {
     //Set the color
-    fill(Math.floor(Math.random() * 255),Math.floor(Math.random() * 255),Math.floor(Math.random() * 255));
+    fill(Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY);
 
     //Set the stroke
-    stroke(Math.floor(Math.random() * 255),Math.floor(Math.random() * 255),Math.floor(Math.random() * 255), 50);
+    stroke(Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY, 50);
 }
 
 //Change fill and stroke color
@@ -106,20 +110,20 @@ function changeColorAndRot() {
         _ellipse.YSpeed*=-1;
         _ellipse.XSpeed*=1;
     }
+}
 
-    function checkKey(e) {
+function checkKey(e) {
 
-        console.log("hel");
+    e = e || window.event;
 
-        e = e || window.event;
-
-        if (e.keyCode == '37') {
-            _ellipse.YSpeed*=1;
-            _ellipse.XSpeed*=-1;
-        }
-        else if (e.KeyCode == '39') {
-            _ellipse.YSpeed*=-1;
-            _ellipse.XSpeed*=1;
-        }
+    if (e.keyCode == 37) {
+        changeColor();
+        _ellipse.YSpeed*=-1;
+        _ellipse.XSpeed*=1;
+    }
+    else if (e.keyCode == 39) {
+        changeColor();
+        _ellipse.YSpeed*=1;
+        _ellipse.XSpeed*=-1;
     }
 }
