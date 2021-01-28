@@ -8,7 +8,6 @@ class myEllipse {
     }
 
     show() {
-        strokeWeight(2);        //Set stroke weight
         ellipse(this.x, this.y, this.w, this.h);        //Draw the ellipse
     }
 }
@@ -22,7 +21,7 @@ let _ellipse = {
 
 let ellipseArray = [];
 
-let mappedMouseX, mappedMouseY = 0;
+let mappedMouseY = 0;
 
 let cnv;
 
@@ -33,10 +32,12 @@ function setup() {
 
     //Set canvas and clicker
     cnv = createCanvas(windowWidth,windowHeight);
-    cnv.mouseClicked(changeColorAndRot);
+    cnv.mouseClicked(changeColor);
 
     //Set the initial colors
     changeColor();
+
+    strokeWeight(2);    //Set stroke weight
 
     background(0,0,0); //Set background
 }
@@ -45,7 +46,7 @@ function draw() {
 
     mappedMouseY = map(mouseY, 0, windowHeight, 0, 128);
 
-    console.log(mappedMouseY);
+    //background("#ffffff01");
 
     drawEllipse();
 }
@@ -74,7 +75,7 @@ function drawEllipse() {
         _ellipse.XSpeed*=-1;
     }
     //Bounce between the max and min width
-    if (_ellipse.Y > windowHeight-30 || _ellipse.Y < 30) {
+    if (_ellipse.Y > windowHeight-20 || _ellipse.Y < 20) {
         _ellipse.YSpeed*=-1;
     }
 
@@ -91,7 +92,7 @@ function changeColor() {
     stroke(Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY, 50);
 }
 
-//Change fill and stroke color
+//Change fill and stroke color -- NOT USED
 function changeColorAndRot() {
    
     changeColor();
@@ -115,15 +116,25 @@ function changeColorAndRot() {
 function checkKey(e) {
 
     e = e || window.event;
-
+    
+    //Check for the keyCode
     if (e.keyCode == 37) {
-        changeColor();
         _ellipse.YSpeed*=-1;
         _ellipse.XSpeed*=1;
     }
     else if (e.keyCode == 39) {
-        changeColor();
         _ellipse.YSpeed*=1;
         _ellipse.XSpeed*=-1;
     }
+    else if(e.keyCode == 32) {
+        //Set color to black
+        fill(0);
+        stroke(0);
+    }
+   else if (e.keyCode == 38) {
+
+   }
+   else if (e.keyCode == 40) {
+
+   }
 }
