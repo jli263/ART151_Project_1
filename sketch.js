@@ -32,10 +32,9 @@ function setup() {
 
     //Set canvas and clicker
     cnv = createCanvas(windowWidth,windowHeight);
-    cnv.mouseClicked(changeColor);
 
     //Set the initial colors
-    changeColor();
+    changeColor(false);
 
     strokeWeight(2);    //Set stroke weight
 
@@ -84,12 +83,19 @@ function drawEllipse() {
     _ellipse.Y = _ellipse.Y + _ellipse.YSpeed;
 }
 
-function changeColor() {
+function changeColor(type) {
+
+    let init = 0;
+
+    if (type == true) {
+        init = Math.floor(Math.random() * 127);
+    }
+
     //Set the color
-    fill(Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY);
+    fill(Math.floor(Math.random() * 127) + init, Math.floor(Math.random() * 127) + init, Math.floor(Math.random() * 127) + init);
 
     //Set the stroke
-    stroke(Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY, Math.floor(Math.random() * 255) + mappedMouseY, 50);
+    stroke(Math.floor(Math.random() * 127) + init, Math.floor(Math.random() * 127) + init, Math.floor(Math.random() * 127) + init, 50);
 }
 
 //Change fill and stroke color -- NOT USED
@@ -132,9 +138,9 @@ function checkKey(e) {
         stroke(0);
     }
    else if (e.keyCode == 38) {
-
+        changeColor(false);
    }
    else if (e.keyCode == 40) {
-
+        changeColor(true);
    }
 }
