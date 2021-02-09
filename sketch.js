@@ -1,18 +1,3 @@
-/* Formal elements:
- * The major formal elements used are shapes, noise, movement. 
- * The star shape moves on its own and will change directions on wall collisions as well as on user input.
- * Furthermore, colors will change randomly depending on the user input. 
- * 
- * How to interact:
- * Left and right arrow to change directions of 
- * Up arrow key to change to color to a random darker color
- * Down arrow key to change the color to a random lighter color
- * Space to change to color to black
- * Z key to decrease the size
- * X key to increase the size
- * 
- */ 
- 
 let XSpeed = 5;
 let YSpeed = 5;
 
@@ -45,13 +30,26 @@ let sizeLimit = 0;
 //Setup the canvas
 function setup() {
 
+    alert("ART151 Project 1: Star Glazing" 
+    + "\nFormal elements:"
+    + "\nThe major formal elements used are color, noise, and movement."
+    + "\nI incorporated these elements to make each generative drawing unique even if the user applied the same input."
+    + "\nThe direction of the star changes based on noise and user input, while the color changes depending on the range of values from the user."
+    + "\nHow to interact:"
+    + "\nLeft and right arrow to change the star's direction"
+    + "\nUp arrow key to change to color to a random darker color"
+    + "\nDown arrow key to change the color to a random lighter color"
+    + "\nSpace to change to color to black"
+    + "\nZ key to decrease the size of the star"
+    + "\nX key to increase the size of the star");
+
     //Set canvas and clicker
     cnv = createCanvas(windowWidth,windowHeight);
 
     //Set the initial colors
     changeColor(false);
 
-    strokeWeight(1);    //Set stroke weight
+    strokeWeight(1.5);    //Set stroke weight
 
     background(0,0,0); //Set background
 }
