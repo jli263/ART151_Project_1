@@ -34,7 +34,7 @@ function setup() {
     + "\nFormal elements:"
     + "\nThe major formal elements used are color, noise, and movement."
     + "\nI incorporated these elements to make each generative drawing unique even if the user applied the same input."
-    + "\nThe direction of the star changes based on noise and user input, while the color changes depending on the range of values from the user."
+    + "\nThe direction of the star changes based on noise and user input, while the color changes depending on the arrow keys."
     + "\nHow to interact:"
     + "\nLeft and right arrow to change the star's direction"
     + "\nUp arrow key to change to color to a random darker color"
